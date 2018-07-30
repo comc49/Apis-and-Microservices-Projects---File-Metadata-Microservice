@@ -3,6 +3,8 @@
 var express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
+var multer  = require('multer');
+var upload = multer();
 
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' );
@@ -25,8 +27,8 @@ app.get('/hello', function(req, res){
   res.json({greetings: "Hello, API"});
 });
 
-app.post('/api/fileanalyse',function(req,res) {
-  console.log(req);
+app.post('/api/fileanalyse',upload.array(),function(req,res) {
+  console.log(req.body);
 });
 
 app.listen(process.env.PORT || 3000, function () {
