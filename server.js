@@ -27,7 +27,7 @@ app.get('/hello', function(req, res){
   res.json({greetings: "Hello, API"});
 });
 
-app.post('/api/fileanalyse',upload.array(),function(req,res) {
+app.post('/api/fileanalyse',upload.single('upfile'),function(req,res) {
   console.log(req.body);
 });
 
